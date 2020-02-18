@@ -11,7 +11,7 @@
             <a 
                 class="nav-link" 
                 [href]="route.Url" 
-                (click) = "SelectedRouteChanged($event)"
+                (click) = "SelectedRouteChanged(route)"
                 [class.text-light]="route.IsSelected"> 
                     {{ route.Name }} 
             </a>

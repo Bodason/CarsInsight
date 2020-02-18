@@ -4,7 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '**', component: HomePageComponent }
+  { path: 'A',  component: HomePageComponent},
+  { path: 'B',  component: HomePageComponent},
+  { path: 'C',  component: HomePageComponent},
+  { path: '**', redirectTo: '/A' }
 ];
 
 @NgModule({

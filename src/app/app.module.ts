@@ -12,6 +12,7 @@ import { BrandSlicingAreaComponent } from './components/brand-slicing-area/brand
 
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule, PlotlyViaCDNModule } from 'angular-plotly.js';
+import { SlicingAreaComponent } from './components/slicing-area/slicing-area.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -20,7 +21,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AppComponent,
     HomePageComponent,
     TopNavBarComponent,
-    BrandSlicingAreaComponent
+    BrandSlicingAreaComponent,
+    SlicingAreaComponent
   ],
   imports: [
     BrowserModule,

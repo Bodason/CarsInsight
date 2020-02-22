@@ -1,14 +1,5 @@
 <app-top-nav-bar></app-top-nav-bar>
 
-<div class="row">
-    <div class="col-6">
-        <div *ngIf="brandGraph">
-            <plotly-plot [data]="brandGraph?.data" [layout]="brandGraph?.layout" [config]="brandGraph.config" (plotly_click)="selectedTest($event)"></plotly-plot>
-        </div>
-    </div>
-    <div class="col-6">
-        <div *ngIf="brandGraph">
-            <plotly-plot [data]="yearBarGraph?.data" [layout]="yearBarGraph?.layout" [config]="yearBarGraph.config"></plotly-plot>
-        </div>
-    </div>
+<div class="container-fluid">
+    <app-slicing-area></app-slicing-area>
 </div>

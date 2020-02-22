@@ -1,4 +1,4 @@
-import { BaseBarGraph } from './base-bar-graph';
+import { BaseBarGraph } from './../base-bar-graph';
 
 export class YearBarGraph implements BaseBarGraph {
     layout = {

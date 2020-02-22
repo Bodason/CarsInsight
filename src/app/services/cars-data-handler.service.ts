@@ -1,4 +1,4 @@
-import { YearBarGraph } from './year-graph';
+import { YearBarGraph } from './year/year-graph';
 import { BaseBarGraph } from './base-bar-graph';
 import { BrandBarGraph } from './brand-graph';
 import { Injectable } from '@angular/core';

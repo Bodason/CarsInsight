@@ -1,7 +1,7 @@
-import { BrandSlicingGraph } from './../../services/brand-slicing/brand-slicing-graph';
-import { CarsDataHandlerService } from './../../services/cars-data-handler.service';
+import { CarsDataHandlerService } from './../../data-utils/cars-data-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { YearSlicingGraph } from 'src/app/services/year-slicing/year-slicing-graph.class';
+import { YearSlicingGraph } from 'src/app/data-utils/year-slicing/year-slicing-graph.class';
+import { BrandSlicingGraph } from 'src/app/data-utils/brand-slicing/brand-slicing-grap.class';
 
 @Component({
   selector: 'app-slicing-area',

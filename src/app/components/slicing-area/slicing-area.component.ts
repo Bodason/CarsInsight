@@ -1,6 +1,7 @@
+import { BrandSlicingGraph } from './../../services/brand-slicing/brand-slicing-graph';
 import { CarsDataHandlerService } from './../../services/cars-data-handler.service';
-import { BaseBarGraph } from './../../services/base-bar-graph';
 import { Component, OnInit } from '@angular/core';
+import { YearSlicingGraph } from 'src/app/services/year-slicing/year-slicing-graph.class';
 
 @Component({
   selector: 'app-slicing-area',
@@ -9,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlicingAreaComponent implements OnInit {
 
-  brandGraph: BaseBarGraph;
-  yearBarGraph: BaseBarGraph;
+  brandGraph: BrandSlicingGraph;
+  yearBarGraph: YearSlicingGraph;
 
   constructor(private carsDataHandlerService: CarsDataHandlerService) { }
 

@@ -1,17 +1,17 @@
-import { YearBarGraph } from './year/year-graph';
-import { BaseBarGraph } from './base-bar-graph';
-import { BrandBarGraph } from './brand-graph';
+import { BrandSlicingGraph } from './brand-slicing/brand-slicing-graph';
+import { Car } from './../shared-classes/car';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Car } from './car';
+import { YearSlicingGraph } from './year-slicing/year-slicing-graph.class';
+import { BaseBarGraph } from '../shared-classes/base-bar-graph';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsDataHandlerService {
   private Cars: Car[];
-  private BrandGraph = new BrandBarGraph();
-  private YearGraph = new YearBarGraph();
+  private BrandGraph = new BrandSlicingGraph();
+  private YearGraph = new YearSlicingGraph();
 
 
   constructor(private http: HttpClient) {
@@ -51,7 +51,7 @@ export class CarsDataHandlerService {
     }
   }
 
-  public GetBrandGraph(): BaseBarGraph {
+  public GetBrandGraph(): BrandSlicingGraph {
     return this.BrandGraph;
   }
 

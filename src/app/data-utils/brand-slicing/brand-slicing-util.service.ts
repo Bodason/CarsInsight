@@ -1,33 +1,33 @@
 import { Car } from './../../shared-classes/car';
-import { YearSlicingGraph } from './year-slicing-graph.class';
 import { Injectable } from '@angular/core';
+import { BrandSlicingGraph } from './brand-slicing-grap.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class YearSlicingUtilService {
-  YearGraph: YearSlicingGraph;
+export class BrandSlicingUtilService {
+  BrandGraph: BrandSlicingGraph;
 
   constructor() {
-    this.YearGraph = new YearSlicingGraph();
-  }
+    this.BrandGraph = new BrandSlicingGraph();
+   }
 
-  public PrepareYearsGraphIfNull(cars: Car[]) {
-    const yearsAxis: string[] = [];
+  public PrepareBrandGraph(cars: Car[]) {
+    const brandsAxis: string[] = [];
     const consumtionAxis: string[] = [];
 
-    if (this.YearGraph?.data == null) {
+    if (this.BrandGraph?.data == null) {
       const timerStart = new Date();
 
       cars.forEach(car => {
-        yearsAxis.push(car.year);
+        brandsAxis.push(car.brand);
         consumtionAxis.push(car.price);
       });
 
-      this.YearGraph.data = [{
+      this.BrandGraph.data = [{
         type: 'bar',
         x: consumtionAxis,
-        y: yearsAxis,
+        y: brandsAxis,
         orientation: 'h'
       }];
       const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
@@ -35,7 +35,7 @@ export class YearSlicingUtilService {
     }
   }
 
-  public GetYearsGraph(): YearSlicingGraph {
-    return this.YearGraph;
+  public GetBrandGraph(): BrandSlicingGraph {
+    return this.BrandGraph;
   }
 }

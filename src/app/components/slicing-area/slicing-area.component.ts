@@ -16,7 +16,7 @@ export class SlicingAreaComponent implements OnInit {
   constructor(private carsDataHandlerService: CarsDataHandlerService) { }
 
   async ngOnInit(): Promise<void> {
-    await this.carsDataHandlerService.loadCars();
+    await this.carsDataHandlerService.LoadCars();
     await this.carsDataHandlerService.PrepareBrandGraph();
 
     await this.carsDataHandlerService.PrepareYearsGraphIfNull();

@@ -1,11 +1,11 @@
 import { BaseBarGraph } from 'src/app/shared-classes/base-bar-graph';
 
-export class BrandSlicingGraph extends BaseBarGraph {
+export class YearSlicingBarGraph extends BaseBarGraph {
 
     constructor() {
         super();
 
-        this.layout.title = 'Brand';
+        this.layout.title = 'Year';
         this.data = null;
     }
 }

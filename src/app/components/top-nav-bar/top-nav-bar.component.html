@@ -8,7 +8,7 @@
             <a 
                 class="nav-link cursor-pointer" 
                 (click) = "SelectedRouteChanged(route)"
-                [class.text-light]="route.IsSelected"
+                [class.selected-item-style]="route.IsSelected"
                 [class.text-secondary]="!route.IsSelected"> 
                     {{ route.Name }} 
             </a>

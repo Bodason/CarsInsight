@@ -1,15 +1,15 @@
+import { YearSlicingBarGraph } from './year-slicing-bar-graph.class';
 import { Car } from './../../shared-classes/car';
-import { YearSlicingGraph } from './year-slicing-graph.class';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YearSlicingUtilService {
-  YearGraph: YearSlicingGraph;
+  YearGraph: YearSlicingBarGraph;
 
   constructor() {
-    this.YearGraph = new YearSlicingGraph();
+    this.YearGraph = new YearSlicingBarGraph();
   }
 
   public PrepareYearsGraphIfNull(cars: Car[]) {
@@ -30,12 +30,13 @@ export class YearSlicingUtilService {
         y: yearsAxis,
         orientation: 'h'
       }];
-      const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
-      console.debug(`Prepare brand graph completed after ${timeElapsed / 1000} seconds`);
+
+      const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after performance measures
+      console.debug(`Prepare year graph completed after ${timeElapsed / 1000} seconds`);
     }
   }
 
-  public GetYearsGraph(): YearSlicingGraph {
+  public GetYearsGraph(): YearSlicingBarGraph {
     return this.YearGraph;
   }
 }

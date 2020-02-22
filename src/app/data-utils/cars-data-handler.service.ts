@@ -1,10 +1,10 @@
+import { YearSlicingBarGraph } from './year-slicing/year-slicing-bar-graph.class';
+import { BrandSlicingBarGraph } from './brand-slicing/brand-slicing-bar-grap.class';
 import { BrandSlicingUtilService } from './brand-slicing/brand-slicing-util.service';
 import { Car } from './../shared-classes/car';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { YearSlicingGraph } from './year-slicing/year-slicing-graph.class';
 import { BaseBarGraph } from '../shared-classes/base-bar-graph';
-import { BrandSlicingGraph } from './brand-slicing/brand-slicing-grap.class';
 import { YearSlicingUtilService } from './year-slicing/year-slicing-util.service';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class CarsDataHandlerService {
     this.brandSlicingUtilService.PrepareBrandGraph(this.Cars);
   }
 
-  public GetBrandGraph(): BrandSlicingGraph {
+  public GetBrandGraph(): BrandSlicingBarGraph {
     return this.brandSlicingUtilService.GetBrandGraph();
   }
 
@@ -42,7 +42,7 @@ export class CarsDataHandlerService {
     this.yearSlicingUtil.PrepareYearsGraphIfNull(this.Cars);
   }
 
-  public GetYearGraph(): YearSlicingGraph {
+  public GetYearGraph(): YearSlicingBarGraph {
     return this.yearSlicingUtil.GetYearsGraph();
   }
 

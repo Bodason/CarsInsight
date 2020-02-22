@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -5,4 +7,10 @@
 ul.nav-bar-style{
     list-style-type: none;
     display: contents;
+}
+
+.selected-item-style {
+    @extend .border;
+    @extend .rounded;
+    @extend .text-light;
 }

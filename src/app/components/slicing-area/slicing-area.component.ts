@@ -1,7 +1,7 @@
+import { YearSlicingBarGraph } from './../../data-utils/year-slicing/year-slicing-bar-graph.class';
+import { BrandSlicingBarGraph } from './../../data-utils/brand-slicing/brand-slicing-bar-grap.class';
 import { CarsDataHandlerService } from './../../data-utils/cars-data-handler.service';
 import { Component, OnInit } from '@angular/core';
-import { YearSlicingGraph } from 'src/app/data-utils/year-slicing/year-slicing-graph.class';
-import { BrandSlicingGraph } from 'src/app/data-utils/brand-slicing/brand-slicing-grap.class';
 
 @Component({
   selector: 'app-slicing-area',
@@ -10,12 +10,12 @@ import { BrandSlicingGraph } from 'src/app/data-utils/brand-slicing/brand-slicin
 })
 export class SlicingAreaComponent implements OnInit {
 
-  brandGraph: BrandSlicingGraph;
-  yearBarGraph: YearSlicingGraph;
+  brandGraph: BrandSlicingBarGraph;
+  yearBarGraph: YearSlicingBarGraph;
 
   constructor(private carsDataHandlerService: CarsDataHandlerService) { }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> { // TODO: get rid of async+await and use observable pattern instead for a more responsive feel.
     await this.carsDataHandlerService.LoadCars();
     await this.carsDataHandlerService.PrepareBrandGraph();
 

@@ -2,7 +2,7 @@ import { BaseBarGraph } from 'src/app/shared-classes/base-bar-graph';
 import { Injectable } from '@angular/core';
 import { Car } from '../shared-classes/car';
 import { YearSlicingBarGraph } from '../shared-classes/year-slicing-bar-graph.class';
-import { BrandSlicingBarGraph } from '../shared-classes/brand-slicing-bar-grap.class';
+import { BrandSlicingBarGraph } from '../shared-classes/brand-slicing-bar-graph.class';
 
 @Injectable({
   providedIn: 'root'

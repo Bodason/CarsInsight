@@ -11,12 +11,7 @@ export class YearSlicingUtilService {
    }
 
   public PrepareYearsGraphIfNull(cars: Car[]) { // separate logic from this call into multiple promises
-    const timerStart = new Date();
-
     this.graphingUtil.PrepareBarGraph(cars, 'Year', YearSlicingBarGraph.name);
-
-    const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
-    console.debug(`Prepare tear graph completed after ${timeElapsed / 1000} seconds`);
   }
 
   public GetYearsGraph(): YearSlicingBarGraph {

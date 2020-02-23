@@ -14,6 +14,8 @@ export class BarGraphUtilService {
   constructor() { }
 
   PrepareBarGraph(cars: Car[], barGraphingType: 'Year'|'Brand', graphName: string) {
+    const timerStart = new Date();
+
     const graph =  barGraphingType === 'Brand' ? new BrandSlicingBarGraph() : new YearSlicingBarGraph();
     const uniqueCategories = [];
     const dataMap: Map<string, number> = new Map<string, number>();
@@ -41,6 +43,9 @@ export class BarGraphUtilService {
     graph.data[0].x = counts;
 
     this.Graphs.set(graphName, graph);
+
+    const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
+    console.debug(`Prepare ${category} graph completed after ${timeElapsed / 1000} seconds`);
   }
 
   public GetGraphByName(graphName: string): BaseBarGraph {

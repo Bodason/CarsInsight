@@ -23,8 +23,20 @@ export class BaseBarGraphData {
 }
 
 export class BaseBarGraphLayout {
-    title = 'Bar graph';
-    showlegend = false;
+    title: string;
+    showlegend: boolean;
+    xaxis: BaseBarGraphXaxis;
+
+    constructor() {
+        this.title = 'Bar graph';
+        this.showlegend = false;
+        this.xaxis = new BaseBarGraphXaxis();
+    }
+}
+
+export class BaseBarGraphXaxis {
+    tickformat: string;
+    range: number[];
 }
 
 export class BaseBarGraphConfig {

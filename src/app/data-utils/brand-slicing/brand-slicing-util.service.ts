@@ -1,9 +1,7 @@
-import { BarGraphUtilService } from './../graphing-util/bar-graph-util.service';
-import { BaseHistogramGraphMarker } from './../../shared-classes/base-histogram-graph.class';
-import { BrandSlicingHistogramGraph } from './brand-slicing-histogram.class';
 import { BrandSlicingBarGraph } from './brand-slicing-bar-grap.class';
 import { Car } from './../../shared-classes/car';
 import { Injectable } from '@angular/core';
+import { BarGraphUtilService } from 'src/app/graphing-util/bar-graph-util.service';
 
 @Injectable({
   providedIn: 'root'

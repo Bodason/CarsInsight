@@ -1,7 +1,7 @@
-import { BarGraphUtilService } from './../graphing-util/bar-graph-util.service';
 import { YearSlicingBarGraph } from './year-slicing-bar-graph.class';
 import { Car } from './../../shared-classes/car';
 import { Injectable } from '@angular/core';
+import { BarGraphUtilService } from 'src/app/graphing-util/bar-graph-util.service';
 
 @Injectable({
   providedIn: 'root'

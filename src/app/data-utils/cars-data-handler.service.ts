@@ -2,8 +2,6 @@ import { Car } from './../shared-classes/car';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { BarGraphUtilService } from '../graphing-util/bar-graph-util.service';
-import { YearSlicingBarGraph } from '../shared-classes/year-slicing-bar-graph.class';
-import { BrandSlicingBarGraph } from '../shared-classes/brand-slicing-bar-graph.class';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +10,7 @@ export class CarsDataHandlerService {
   private Cars: Car[];
   private dataSourceUrl = '../../assets/Data/carsData.json';
 
-  constructor(
-    private http: HttpClient,
-    private graphingUtil: BarGraphUtilService) {}
+  constructor(private http: HttpClient) {}
 
   public async LoadCars() {
     if (!this.Cars) {
@@ -27,20 +23,8 @@ export class CarsDataHandlerService {
     }
   }
 
-  public PrepareBrandGraph() {
-    this.graphingUtil.PrepareBarGraph(this.Cars, 'Brand', BrandSlicingBarGraph.name);
-  }
-
-  public GetBrandGraph(): BrandSlicingBarGraph {
-    return this.graphingUtil.GetGraphByName(BrandSlicingBarGraph.name);
-  }
-
-  public PrepareYearsGraphIfNull() {
-    this.graphingUtil.PrepareBarGraph(this.Cars, 'Year', YearSlicingBarGraph.name);
-  }
-
-  public GetYearGraph(): YearSlicingBarGraph {
-    return this.graphingUtil.GetGraphByName(YearSlicingBarGraph.name);
+  public GetCars(): Car[] {
+    return this.Cars;
   }
 
 }

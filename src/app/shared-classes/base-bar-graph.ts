@@ -1,14 +1,21 @@
 export class BaseBarGraph {
+    protected baseColor = 'rgba(200,200,200,1)';
     data: BaseBarGraphData[];
     layout: BaseBarGraphLayout;
     config: BaseBarGraphConfig;
 
     constructor() {
         this.data = [new BaseBarGraphData()];
+        this.data[0].marker.color = [this.baseColor];
         this.layout = new BaseBarGraphLayout();
         this.config = new BaseBarGraphConfig();
     }
+
+    public GetBaseColor(): string {
+        return this.baseColor;
+    }
 }
+
 
 export class BaseBarGraphData {
     type = 'bar';
@@ -44,7 +51,7 @@ export class BaseBarGraphConfig {
 }
 
 export class BaseBarGraphMarker {
-    color?: string|string[] = 'rgba(200,200,200,1)'; // rgba
+    color?: string[]; // rgba
     line?: BaseBarGraphMarkerLine;
 
     constructor() {

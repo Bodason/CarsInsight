@@ -1,9 +1,11 @@
 import { BrandSlicingBarGraph } from './../../shared-classes/brand-slicing-bar-graph.class';
 import { CarsDataHandlerService } from './../../data-utils/cars-data-handler.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
 import { YearSlicingBarGraph } from 'src/app/shared-classes/year-slicing-bar-graph.class';
 import { BarGraphUtilService } from 'src/app/graphing-util/bar-graph-util.service';
 import { Car } from 'src/app/shared-classes/car';
+import { GrapghingTypes as GraphingTypes } from 'src/app/shared-classes/graphing-tyoes.enum';
+import { PlotComponent } from 'angular-plotly.js';
 
 @Component({
   selector: 'app-slicing-area',
@@ -11,7 +13,11 @@ import { Car } from 'src/app/shared-classes/car';
   styleUrls: ['./slicing-area.component.scss']
 })
 export class SlicingAreaComponent implements OnInit {
+  @ViewChild('Years') YearsPlotlyComponent: PlotComponent;
+  @ViewChild('Brands') BrandsPlotlyComponent: PlotComponent;
+
   cars: Car[];
+  graphingTypes = GraphingTypes;
   brandGraph: BrandSlicingBarGraph;
   yearBarGraph: YearSlicingBarGraph;
 
@@ -21,16 +27,20 @@ export class SlicingAreaComponent implements OnInit {
   async ngOnInit(): Promise<void> { // TODO: get rid of async+await and use observable pattern instead for a more responsive feel.
     await this.carsDataHandlerService.LoadCars();
     this.cars = this.carsDataHandlerService.GetCars();
-    await this.barGraphUtilService.PrepareBarGraph(this.cars, 'Year', YearSlicingBarGraph.name);
-    await this.barGraphUtilService.PrepareBarGraph(this.cars, 'Brand', BrandSlicingBarGraph.name);
+
+    this.barGraphUtilService.PrepareBarGraph(this.cars, GraphingTypes.year, YearSlicingBarGraph.name);
+    this.barGraphUtilService.PrepareBarGraph(this.cars, GraphingTypes.brand, BrandSlicingBarGraph.name);
 
     this.brandGraph = this.barGraphUtilService.GetGraphByName(BrandSlicingBarGraph.name);
     this.yearBarGraph = this.barGraphUtilService.GetGraphByName(YearSlicingBarGraph.name);
   }
 
+  async SelectedCategoryChanged(plotlySelectEvent: any, categoryType: GraphingTypes) {
+    const selectedCategory: string = plotlySelectEvent.points[0].label;
+    const graphName =  categoryType === GraphingTypes.brand ? BrandSlicingBarGraph.name : YearSlicingBarGraph.name;
+    this.barGraphUtilService.ModifyGraphsAfterelection(selectedCategory, categoryType, graphName);
 
-  selectedTest(test: any) {
-    console.log(test);
+    await this.BrandsPlotlyComponent.createPlot(); // update didnt trigger color change, so i had to use this more expensive method
+    await this.YearsPlotlyComponent.createPlot(); // update didnt trigger color change, so i had to use this more expensive method
   }
-
 }

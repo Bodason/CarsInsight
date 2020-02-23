@@ -2,6 +2,8 @@
   "defaultSeverity": "warning",
   "extends": "tslint:recommended",
   "rules": {
+    "prefer-for-of":false,
+    "triple-equals": false,
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {

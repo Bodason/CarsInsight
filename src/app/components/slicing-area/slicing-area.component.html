@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-6">
         <div *ngIf="brandGraph">
-            <plotly-plot [data]="brandGraph?.data" [layout]="brandGraph?.layout" [config]="brandGraph.config" (plotly_click)="selectedTest($event)"></plotly-plot>
+            <plotly-plot #Brands [data]="brandGraph?.data" [layout]="brandGraph?.layout" [config]="brandGraph.config" (plotly_click)="SelectedCategoryChanged($event, graphingTypes.brand)"></plotly-plot>
         </div>
     </div>
     <div class="col-6">
-        <div *ngIf="brandGraph">
-            <plotly-plot [data]="yearBarGraph?.data" [layout]="yearBarGraph?.layout" [config]="yearBarGraph.config"></plotly-plot>
+        <div *ngIf="yearBarGraph">
+            <plotly-plot #Years [data]="yearBarGraph?.data" [layout]="yearBarGraph?.layout" [config]="yearBarGraph.config" (plotly_click)="SelectedCategoryChanged($event, graphingTypes.year)"></plotly-plot>
         </div>
     </div>
 </div>

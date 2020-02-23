@@ -14,8 +14,12 @@ export class BaseBarGraphData {
     type = 'bar';
     x?: string[];
     y?: string[];
-    orientation?: 'h' | 'v' = 'h';  // in this demo, it makes sense to default to vertical orientation - not in general though
+    orientation?: 'h' | 'v' = 'v';  // in this demo, it makes sense to default to vertical orientation - not in general though
     marker?: BaseBarGraphMarker;
+
+    constructor() {
+        this.marker = new BaseBarGraphMarker();
+    }
 }
 
 export class BaseBarGraphLayout {
@@ -27,11 +31,15 @@ export class BaseBarGraphConfig {
     displayModeBar = false;
 }
 
-export interface BaseBarGraphMarker {
-    color?: string|string[]; // rgba
+export class BaseBarGraphMarker {
+    color?: string|string[] = 'rgba(200,200,200,1)'; // rgba
     line?: BaseBarGraphMarkerLine;
+
+    constructor() {
+        this.line = new BaseBarGraphMarkerLine();
+    }
 }
-export interface BaseBarGraphMarkerLine {
-    color?: string; // rgb
-    width?: number;
+export class BaseBarGraphMarkerLine {
+    color = 'rgb(0,0,0)';
+    width = '1';
 }

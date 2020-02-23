@@ -6,6 +6,6 @@ export class BrandSlicingBarGraph extends BaseBarGraph {
         super();
 
         this.layout.title = 'Brand';
-        this.data = null;
+        this.data[0].marker.color = 'rgba(200,10,10,0.1)';
     }
 }

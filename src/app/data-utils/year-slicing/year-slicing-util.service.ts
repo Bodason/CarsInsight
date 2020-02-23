@@ -1,3 +1,4 @@
+import { BarGraphUtilService } from './../graphing-util/bar-graph-util.service';
 import { YearSlicingBarGraph } from './year-slicing-bar-graph.class';
 import { Car } from './../../shared-classes/car';
 import { Injectable } from '@angular/core';
@@ -6,37 +7,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class YearSlicingUtilService {
-  YearGraph: YearSlicingBarGraph;
+  constructor(private graphingUtil: BarGraphUtilService) {
+   }
 
-  constructor() {
-    this.YearGraph = new YearSlicingBarGraph();
-  }
+  public PrepareYearsGraphIfNull(cars: Car[]) { // separate logic from this call into multiple promises
+    const timerStart = new Date();
 
-  public PrepareYearsGraphIfNull(cars: Car[]) {
-    const yearsAxis: string[] = [];
-    const consumtionAxis: string[] = [];
+    this.graphingUtil.PrepareBarGraph(cars, 'Year', YearSlicingBarGraph.name);
 
-    if (this.YearGraph?.data == null) {
-      const timerStart = new Date();
-
-      cars.forEach(car => {
-        yearsAxis.push(car.year);
-        consumtionAxis.push(car.price);
-      });
-
-      this.YearGraph.data = [{
-        type: 'bar',
-        x: consumtionAxis,
-        y: yearsAxis,
-        orientation: 'h'
-      }];
-
-      const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after performance measures
-      console.debug(`Prepare year graph completed after ${timeElapsed / 1000} seconds`);
-    }
+    const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
+    console.debug(`Prepare tear graph completed after ${timeElapsed / 1000} seconds`);
   }
 
   public GetYearsGraph(): YearSlicingBarGraph {
-    return this.YearGraph;
+    return this.graphingUtil.GetGraphByName(YearSlicingBarGraph.name);
   }
 }

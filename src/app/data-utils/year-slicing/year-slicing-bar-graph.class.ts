@@ -6,6 +6,6 @@ export class YearSlicingBarGraph extends BaseBarGraph {
         super();
 
         this.layout.title = 'Year';
-        this.data = null;
+        this.data[0].marker.color = 'rgba(10,10,200,0.1)';
     }
 }

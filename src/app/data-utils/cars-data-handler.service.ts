@@ -1,11 +1,9 @@
 import { YearSlicingBarGraph } from './year-slicing/year-slicing-bar-graph.class';
 import { BrandSlicingBarGraph } from './brand-slicing/brand-slicing-bar-grap.class';
-import { BrandSlicingUtilService } from './brand-slicing/brand-slicing-util.service';
 import { Car } from './../shared-classes/car';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { BaseBarGraph } from '../shared-classes/base-bar-graph';
-import { YearSlicingUtilService } from './year-slicing/year-slicing-util.service';
+import { BarGraphUtilService } from '../graphing-util/bar-graph-util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +14,7 @@ export class CarsDataHandlerService {
 
   constructor(
     private http: HttpClient,
-    private yearSlicingUtil: YearSlicingUtilService,
-    private brandSlicingUtilService: BrandSlicingUtilService) {}
+    private graphingUtil: BarGraphUtilService) {}
 
   public async LoadCars() {
     if (!this.Cars) {
@@ -31,19 +28,19 @@ export class CarsDataHandlerService {
   }
 
   public PrepareBrandGraph() {
-    this.brandSlicingUtilService.PrepareBrandGraph(this.Cars);
+    this.graphingUtil.PrepareBarGraph(this.Cars, 'Brand', BrandSlicingBarGraph.name);
   }
 
   public GetBrandGraph(): BrandSlicingBarGraph {
-    return this.brandSlicingUtilService.GetBrandGraph();
+    return this.graphingUtil.GetGraphByName(BrandSlicingBarGraph.name);
   }
 
   public PrepareYearsGraphIfNull() {
-    this.yearSlicingUtil.PrepareYearsGraphIfNull(this.Cars);
+    this.graphingUtil.PrepareBarGraph(this.Cars, 'Year', YearSlicingBarGraph.name);
   }
 
   public GetYearGraph(): YearSlicingBarGraph {
-    return this.yearSlicingUtil.GetYearsGraph();
+    return this.graphingUtil.GetGraphByName(YearSlicingBarGraph.name);
   }
 
 }

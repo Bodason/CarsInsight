@@ -1,3 +1,4 @@
+import { InsightsUtilService } from './insights-util.service';
 import { Car } from './../shared-classes/car';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
@@ -10,7 +11,8 @@ export class CarsDataHandlerService {
   private Cars: Car[];
   private dataSourceUrl = '../../assets/Data/carsData.json';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private insightsUtil: InsightsUtilService) {}
 
   public async LoadCars() {
     if (!this.Cars) {
@@ -18,6 +20,8 @@ export class CarsDataHandlerService {
 
       this.Cars = await this.http.get<Promise<Car[]>>(this.dataSourceUrl).toPromise(); // TODO: Load from a server instead !
       const timeElapsed = new Date().getTime() - timerStart.getTime(); // TODO: get rid of timer after perfomance measures
+
+      this.insightsUtil.SetData(this.Cars);
 
       console.debug(`Load cars completed after ${timeElapsed / 1000} seconds`);
     }

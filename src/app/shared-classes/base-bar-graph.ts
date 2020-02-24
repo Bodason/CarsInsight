@@ -33,17 +33,27 @@ export class BaseBarGraphLayout {
     title: string;
     showlegend: boolean;
     xaxis: BaseBarGraphXaxis;
+    yaxis: BaseBarGraphXaxis;
+
 
     constructor() {
         this.title = 'Bar graph';
         this.showlegend = false;
         this.xaxis = new BaseBarGraphXaxis();
+        this.yaxis = new BaseBarGraphYaxis();
     }
 }
 
 export class BaseBarGraphXaxis {
     tickformat: string;
     range: number[];
+    fixedrange = true;
+}
+
+export class BaseBarGraphYaxis {
+    tickformat: string;
+    range: number[];
+    fixedrange = true;
 }
 
 export class BaseBarGraphConfig {

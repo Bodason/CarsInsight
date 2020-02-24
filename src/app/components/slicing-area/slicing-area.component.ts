@@ -1,6 +1,7 @@
+import { InsightsUtilService } from './../../data-utils/insights-util.service';
 import { BrandSlicingBarGraph } from './../../shared-classes/brand-slicing-bar-graph.class';
 import { CarsDataHandlerService } from './../../data-utils/cars-data-handler.service';
-import { Component, OnInit, OnChanges, SimpleChanges, SimpleChange, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { YearSlicingBarGraph } from 'src/app/shared-classes/year-slicing-bar-graph.class';
 import { BarGraphUtilService } from 'src/app/graphing-util/bar-graph-util.service';
 import { Car } from 'src/app/shared-classes/car';
@@ -22,6 +23,7 @@ export class SlicingAreaComponent implements OnInit {
   yearBarGraph: YearSlicingBarGraph;
 
   constructor(private carsDataHandlerService: CarsDataHandlerService,
+              private insightsUtil: InsightsUtilService,
               private barGraphUtilService: BarGraphUtilService) { }
 
   async ngOnInit(): Promise<void> { // TODO: get rid of async+await and use observable pattern instead for a more responsive feel.
@@ -38,6 +40,8 @@ export class SlicingAreaComponent implements OnInit {
   async SelectedCategoryChanged(plotlySelectEvent: any, categoryType: GraphingTypes) {
     const selectedCategory: string = plotlySelectEvent.points[0].label;
     const graphName =  categoryType === GraphingTypes.brand ? BrandSlicingBarGraph.name : YearSlicingBarGraph.name;
+
+    this.insightsUtil.UpdateInsights(selectedCategory, categoryType);
     this.barGraphUtilService.ModifyGraphsAfterelection(selectedCategory, categoryType, graphName);
 
     await this.BrandsPlotlyComponent.createPlot(); // update didnt trigger color change, so i had to use this more expensive method

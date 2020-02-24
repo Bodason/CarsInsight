@@ -15,7 +15,7 @@ export class TableAreaComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['id', 'brand', 'model', 'year', 'price', 'milage'];
+  displayedColumns: string[] = ['id','milage', 'brand', 'model', 'price', 'year'];
 
   tableData: MatTableDataSource<Car> = new MatTableDataSource();
 
@@ -27,5 +27,14 @@ export class TableAreaComponent implements OnInit {
       this.tableData.paginator = this.paginator;
       this.tableData.sort = this.sort;
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tableData.filter = filterValue.trim().toLowerCase();
+
+    if (this.tableData.paginator) {
+      this.tableData.paginator.firstPage();
+    }
   }
 }

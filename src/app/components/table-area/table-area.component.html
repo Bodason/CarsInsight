@@ -1,6 +1,10 @@
-
-<div class="container">
+<div class="col-8 offset-2">
   <div class="pb-4"></div>
+  
+  <div class="active-cyan-3 active-cyan-4 mb-4">  
+    <input class="form-control"  placeholder="Filter ..." matInput (keyup)="applyFilter($event)" >
+  </div>
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="tableData" matSort>
   
@@ -22,25 +26,25 @@
         <td mat-cell *matCellDef="let row"> {{row.model}} </td>
       </ng-container>
 
-      <!-- Year Column -->
-      <ng-container matColumnDef="year">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> year </th>
-        <td mat-cell *matCellDef="let row"> {{row.year}} </td>
-      </ng-container>
-
       <!-- price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>
-        <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.price | number}} </td>
+      </ng-container>
+
+      <!-- Year Column -->
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> year </th>
+        <td mat-cell *matCellDef="let row"> {{row.year }} </td>
       </ng-container>
 
         <!-- milage Column -->
         <ng-container matColumnDef="milage">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> milage </th>
-          <td mat-cell *matCellDef="let row"> {{row.milage}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.milage | number}} </td>
         </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   

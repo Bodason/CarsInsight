@@ -27,7 +27,7 @@ export class SlicingAreaComponent implements OnInit {
               private barGraphUtilService: BarGraphUtilService) { }
 
   async ngOnInit(): Promise<void> { // TODO: get rid of async+await and use observable pattern instead for a more responsive feel.
-    await this.carsDataHandlerService.LoadCars();
+    await this.carsDataHandlerService.LoadCars(); // temp locaiton - move further upwards
     this.cars = this.carsDataHandlerService.GetCars();
 
     this.barGraphUtilService.PrepareBarGraph(this.cars, GraphingTypes.year, YearSlicingBarGraph.name);
